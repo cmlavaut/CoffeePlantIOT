@@ -1,10 +1,13 @@
 import dht
 from machine import Pin, ADC,UART
 from time import sleep
-from led_parpadeo
+import led_parpadeo
 
 s11 = dht.DHT11(Pin(27))
 sensor = ADC(Pin(12))
+max_suelo = 54525
+min_suelo = 22005
+while True:
     valor = (max_suelo - sensor.read_u16())*100/(max_suelo-min_suelo)
     if valor < 50:
         led_parpadeo.encendido(32)
