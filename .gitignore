@@ -3,3 +3,6 @@
 
 # Ignorar carpeta node_modules
 node_modules
+
+#ignorar ficheros swp
+*.swp
