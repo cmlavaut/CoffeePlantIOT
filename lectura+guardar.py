@@ -6,12 +6,10 @@ from datetime import datetime
 
 
 dicc = {
-        "humedad_sueloOut" : [],
-        "humedad_ambOut" : [],
-        "temperaturaOut" :[],
-        "humedad_sueloIn": [],
-        "humedad_ambIn": [],
-        "temperaturaIn": []
+        "Place" : [],
+        "humedad_suelo" : [],
+        "humedad_amb" : [],
+        "temperatura" :[],
         }
 tabla = pd.DataFrame.from_dict(dicc)
 tabla.to_csv('./datos.csv',index= False)
@@ -47,11 +45,8 @@ def main():
         sensor11 = arduino2.readline()
         sensor11 = sensor11.decode()
         value11 = sensor11.split()
-        if (len(value)==5 and len(value11)==5):
-            value = value[2:5]
-            value11 = value11[2:5]
-            print(value)
-            print(value11)
+        if (len(value)==4 and len(value11)==4):
+            print("valores correctos")
             guardar(value, value11)
             print(tabla)
         else:
