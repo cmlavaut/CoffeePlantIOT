@@ -14,7 +14,7 @@ dicc = {
         "temperaturaIn": []
         }
 tabla = pd.DataFrame.from_dict(dicc)
-tabla.to_csv('./tabla.csv',index= False)
+tabla.to_csv('./datos.csv',index= False)
 
 def main():
     arduino = serial.Serial()
@@ -64,7 +64,7 @@ def main():
 
 
 def guardar(valorA, valorB):
-        tabla = pd.read_csv('./tabla.csv')
+        tabla = pd.read_csv('./datos.csv')
         now = datetime.now()
         now_fecha = now.strftime("%d %m %y")
         now_hora = now.strftime("%H:%M:%S")
@@ -74,9 +74,15 @@ def guardar(valorA, valorB):
         except:
             print("ya existe columnas de hora y fecha")
             pass
-        datos = [now_fecha, now_hora] + valorA +valorB
+        datos = [now_fecha, now_hora] 
+        for i in range(len(valorA)):
+            datos.append(valorA[i])
+        for k in range(len(valorB)):
+            datos.append(valorB[k])
+        #print(tabla)
+        #print(datos)
         tabla.loc[tabla.shape[0]]= datos
-        tabla.to_csv('./tabla.csv',index= False)
+        tabla.to_csv('./datos.csv',index= False)
         return tabla
 
 if __name__ == "__main__":
