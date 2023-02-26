@@ -28,10 +28,14 @@ def main():
         arduino2.open()
     except:
         try:
-            arduino.port = "/dev/ttyACM0"
-            arduino.baudrate = 9600
-            print(arduino.port)
+            #puerto1 = sys.argv[1]
+            #puerto2 = sys.argv[2]
+            arduino.port = "/dev/ttyUSB0" 
+            arduino2.port = "/dev/ttyUSB1"
+            arduino.baudrate = 115200
+            arduino2.baudrate = 115200
             arduino.open()
+            arduino2.open()
         except:
             print("nothing conected")
             quit()
