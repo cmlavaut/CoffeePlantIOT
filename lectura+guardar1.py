@@ -49,11 +49,10 @@ def main():
         sensor11 = arduino2.readline()
         sensor11 = sensor11.decode()
         value11 = sensor11.split()
-        print(value)
-        print(value11)
         if (len(value)==4 and len(value11)==4):
             print("valores correctos")
-            guardar(value, value11)
+            guardar(value)
+            guardar(value11)
             print(tabla)
         else:
             print("valores incorrectos")
@@ -64,12 +63,11 @@ def main():
 
 
 
-def guardar(valorA, valorB):
+def guardar(valorA):
         tabla = pd.read_csv('./datos.csv')
         now = datetime.now()
         now_fecha = now.strftime("%d %m %y")
         now_hora = now.strftime("%H:%M:%S")
-        ciclo =0
         try:
             tabla.insert(0, "Fecha", now_fecha)
             tabla.insert(1, "Hora", now_hora)
@@ -77,20 +75,12 @@ def guardar(valorA, valorB):
             print("ya existe columnas de hora y fecha")
             pass
                
-
-        for contador in range(2):
-            if ciclo == 0:
-                datos = [now_fecha, now_hora]
-                lista = valorA
-            elif ciclo ==1:
-                datos = [now_fecha, now_hora]
-                lista = valorB
-            for i in range(len(lista)):
-                datos.append(lista[i])
-            tabla.loc[tabla.shape[0]] = datos
-            tabla.to_csv('./datos.csv', index = False)
-            ciclo =1 
-            
+        
+        datos = [now_fecha, now_hora]
+        for i in range(len(valorA)):
+            datos.append(valorA[i])
+        tabla.loc[tabla.shape[0]] = datos
+        tabla.to_csv('./datos.csv', index = False)
 
         return tabla
 
