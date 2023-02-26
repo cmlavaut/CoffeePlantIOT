@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 from datetime import datetime
 
-
+'''
 dicc = {
         "Place" : [],
         "humedad_suelo" : [],
@@ -13,7 +13,7 @@ dicc = {
         }
 tabla = pd.DataFrame.from_dict(dicc)
 tabla.to_csv('./datos.csv',index= False)
-
+'''
 def main():
     arduino = serial.Serial()
     arduino2= serial.Serial()
