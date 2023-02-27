@@ -54,7 +54,7 @@ def main():
         if (len(value)==4 and len(value11)==4):
             print("valores correctos")
             guardar(value, value11)
-            print(tabla)
+            #print(tabla)
         else:
             print("valores incorrectos")
         
@@ -74,7 +74,7 @@ def guardar(valorA, valorB):
             tabla.insert(0, "Fecha", now_fecha)
             tabla.insert(1, "Hora", now_hora)
         except:
-            print("ya existe columnas de hora y fecha")
+            #print("ya existe columnas de hora y fecha")
             pass
                
 
