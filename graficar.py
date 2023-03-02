@@ -12,7 +12,7 @@ def promedio(columna,i , sala):
     hora = sala[sala["Hora"].astype(int)==i]
     hora = hora.loc[:, columna].astype(float)
     h_arr = hora.to_numpy()
-    return np.mean(h_arr)
+    return np.round(np.mean(h_arr),3)
     
     
 
@@ -20,7 +20,7 @@ def promedio(columna,i , sala):
 def main():
     global humedadamb, humedadsuelo
     datos = pd.read_csv(path)
-    sala = datos[(datos["Place"]=="sala")&(datos["Fecha"]=="26 02 23")].reset_index(drop=True)
+    sala = datos[(datos["Place"]=="sala")&(datos["Fecha"]=="27 02 23")].reset_index(drop=True)
         
     
     for index, row in sala.iterrows():
