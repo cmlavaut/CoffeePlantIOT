@@ -1,0 +1,13 @@
+h1 {
+    color: blueviolet;
+}
+
+.Boton{
+    color:chocolate;
+    align-items: center;
+    display: inline-flex;
+    cursor: pointer;
+    text-decoration: none;
+    border: solid;
+    padding: 5px;
+}

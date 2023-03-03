@@ -1,2 +1,23 @@
-<h1>camiii</h1>
-<h2> inggeniera</h2>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> Pagina Flask Fea</title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+        <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    </head>
+    <body onload="cargarpagina()">
+        <h1> Hola </h1>
+        <p>el valor de la variable es {{x}}</p>
+        <p>el valor es {{xx}}</p>
+        <p>{{y}} vive en {{z}}</p>
+        <a class = "Boton" href="http://gmail.com" target="_blank">ir a gmail</a>
+        <a class = "Boton" href ="{{url_for('suma')}}"  >suma</a>
+       
+
+
+    </body>
+    <footer>
+
+    </footer>
+</html>
