@@ -20,8 +20,8 @@ while True:
     sensor11.measure()
     sensor11_temp =  sensor11.temperature()
     sensor11_hum = sensor11.humidity()
-    print("cuarto {}% {}% {}C".format(valor,sensor11_hum,sensor11_temp))
-    uart.write("cuarto {}% {}% {}C \n".format(valor,sensor11_hum, sensor11_temp))
+    print("cuarto {} {} {}".format(valor,sensor11_hum,sensor11_temp))
+    uart.write("cuarto {} {} {} \n".format(valor,sensor11_hum, sensor11_temp))
     sleep(2)
     
     
