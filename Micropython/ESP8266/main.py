@@ -16,8 +16,8 @@ while True:
     s11.measure()
     sensor11_temp =  s11.temperature()
     sensor11_hum = s11.humidity()
-    print("maceta cuarto: {}% {}% {}C".format(valor,sensor11_hum,sensor11_temp))
-    uart.write("maceta cuarto: {}% {}% {}C \n".format(valor,sensor11_hum, sensor11_temp))
+    print("maceta cuarto: {} {} {}".format(valor,sensor11_hum,sensor11_temp))
+    uart.write("maceta cuarto: {} {} {} \n".format(valor,sensor11_hum, sensor11_temp))
     sleep(2)
     
     
