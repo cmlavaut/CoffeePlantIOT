@@ -16,7 +16,7 @@ void loop() {
 int humedad_suelo = suelo();
 float humedad_amb = dht.readHumidity();
 float temperatura_amb = dht. readTemperature();
-Serial.println("sala " + String(humedad_suelo) + "%" + " " + String(humedad_amb) + "%" + " " + String(temperatura_amb) + "C");
+Serial.println("sala " + String(humedad_suelo) + " " + String(humedad_amb + " " + String(temperatura_amb));
 
 
 delay(2000);
