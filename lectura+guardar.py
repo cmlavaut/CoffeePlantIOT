@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 from datetime import datetime
 
-path = './csv/datos.csv'
+path = './csv/datos_new.csv'
 
 
 def guardar(valorA,tabla):
