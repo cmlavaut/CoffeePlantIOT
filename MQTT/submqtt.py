@@ -1,8 +1,11 @@
 import paho.mqtt.client as mqtt
+import pandas as pd
+import time
+from datetime import datetime
 
 broker = "192.168.50.155"
 topic = "prueba"
-path = './csv/datos_new.csv'
+path = '../csv/datos_new.csv'
 
 def guardar(valorA, tabla):
     now = datetime.now()
@@ -24,8 +27,9 @@ def on_connect(client, userdata, flags, rc):
     print("conectando al broker", rc)
     client.subscribe(topic)
 
-def on_message(client, userdata, message, tabla):
-    print("topic: {} y su mensaje es {}".format(message.topic, message.payload.decode())
+def on_message(client, userdata, message):
+    global tabla
+    print("topic: {} y su mensaje es {}".format(message.topic, message.payload.decode()))
     value = message.payload.decode()
     value = value.split()
     if (len(value) == 4):
@@ -34,9 +38,11 @@ def on_message(client, userdata, message, tabla):
     else:
         print("valores incorrectos")
         main()
+    quit()
 
 
 def main():
+    global tabla
     try:
         tabla = pd.read_csv(path)
     except:
@@ -46,11 +52,14 @@ def main():
             "humedad_amb" : [],
             "temperatura" :[],
         }
-    tabla = pd.DataFrame.from_dict(dicc)
-    tabla.to_csv(path,index= False)
+        tabla = pd.DataFrame.from_dict(dicc)
+        tabla.to_csv(path,index= False)
+    
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
     client.connect(broker)
     client.loop_forever()
 
+if __name__ == "__main__":
+    main()
