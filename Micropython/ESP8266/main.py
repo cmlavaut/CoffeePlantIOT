@@ -4,7 +4,7 @@ from time import sleep
 import led_parpadeo
 
 s11 = dht.DHT11(Pin(27))
-sensor = ADC(Pin(12))
+sensor = ADC(0)
 max_suelo = 54525
 min_suelo = 22005
 while True:
