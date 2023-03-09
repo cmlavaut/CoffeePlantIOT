@@ -3,8 +3,8 @@ import pandas as pd
 import time
 from datetime import datetime
 
-broker = "192.168.50.155"
-topic = "prueba"
+broker = "192.168.0.2"
+topic = "sensores"
 path = '../csv/datos_new.csv'
 
 def guardar(valorA, tabla):
