@@ -38,7 +38,7 @@ def on_message(client, userdata, message):
         guardar(value, tabla)
     else:
         print("valores incorrectos")
-        main()
+        
     quit()
 
 
