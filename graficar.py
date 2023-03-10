@@ -23,8 +23,8 @@ def main():
     datos = pd.read_csv(path)
     place = sys.argv[1]
     date = sys.argv[2]
-    sala = datos[(datos["Place"]==place)&(datos["Fecha"]==date)].reset_index(drop=True)
-    print
+    sala = datos[(datos["Place"]== place)&(datos["Fecha"]== date)].reset_index(drop=True)
+
     
     for index, row in sala.iterrows():
         sala.loc[index,"humedad_amb"] = row["humedad_amb"][:]
