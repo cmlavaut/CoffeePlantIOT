@@ -31,10 +31,10 @@ def connect_wifi():
         except:
             ssid = "IZZI-41AF"
             password = "50A5DC4F41AF"
-            wlan.connect(ssid, password)
-                
+            wlan.connect(ssid, password) 
         if wlan.isconnected():
             break
+    
     print("conexion establecida: ", wlan.ifconfig())
 
 def publicar_MQTT(mensaje):

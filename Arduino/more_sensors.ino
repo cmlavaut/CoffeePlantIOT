@@ -1,4 +1,5 @@
-	#include "DHT.h"
+
+#include "DHT.h"
 #define DHTTYPE DHT22
 int DHTPin = 7;
 DHT dht(DHTPin, DHTTYPE); 
@@ -16,9 +17,7 @@ void loop() {
 int humedad_suelo = suelo();
 float humedad_amb = dht.readHumidity();
 float temperatura_amb = dht. readTemperature();
-Serial.println("sala " + String(humedad_suelo) + " " + String(humedad_amb + " " + String(temperatura_amb));
-
-
+Serial.println("arduino_sala " + String(humedad_suelo) + " " + String(humedad_amb) + " " + String(temperatura_amb));
 delay(2000);
 }
 
