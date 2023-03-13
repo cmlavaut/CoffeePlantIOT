@@ -2,9 +2,10 @@ import paho.mqtt.client as mqtt
 import pandas as pd
 import time
 from datetime import datetime
+import sys
 
 broker = "192.168.0.2"
-topic = "sensores"
+topic = sys.argv[1]
 path = '../csv/datos_new.csv'
 
 def guardar(valorA, tabla):
@@ -37,7 +38,7 @@ def on_message(client, userdata, message):
         guardar(value, tabla)
     else:
         print("valores incorrectos")
-        main()
+        
     quit()
 
 
