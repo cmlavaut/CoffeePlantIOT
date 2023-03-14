@@ -36,10 +36,10 @@ def on_message(client, userdata, message):
     if (len(value) == 4):
         print("valores correctos")
         guardar(value, tabla)
+        client.disconnect()
     else:
         print("valores incorrectos")
         
-    quit()
 
 
 def main():
