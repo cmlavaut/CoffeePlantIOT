@@ -19,7 +19,7 @@ sensor = ADC(Pin(34))
 sensor.atten(ADC.ATTN_11DB)
 max_suelo = 54525
 min_suelo = 22005
-sensornivel = Pin(2,Pin.IN,Pin.PULL_DOWN)
+sensornivel = Pin(4,Pin.IN)
 motor = Pin(23,Pin.OUT)
 
 def connect_wifi():
