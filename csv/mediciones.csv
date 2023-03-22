@@ -1,0 +1,5 @@
+Fecha,Hora,Place,humedad_suelo,humedad_amb,temperatura,status_agua
+21 03 23,23:40:37,cuarto,81.99863,47.2,23.9,0
+21 03 23,23:40:40,arduino_sala,78.0,50.9,24.4,0
+21 03 23,23:50:06,cuarto,81.99863,47.10001,23.8,0
+21 03 23,23:50:11,arduino_sala,78,51.00,24.20,0

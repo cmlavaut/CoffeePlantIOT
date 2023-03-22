@@ -4,7 +4,7 @@ import sys
 import pandas as pd
 from datetime import datetime
 
-path = './csv/datos_new.csv'
+path = './csv/mediciones.csv'
 
 
 def guardar(valorA,tabla):
@@ -34,6 +34,7 @@ def main():
             "humedad_suelo" : [],
             "humedad_amb" : [],
             "temperatura" :[],
+            "status_agua" : [],
         }
         tabla = pd.DataFrame.from_dict(dicc)
         tabla.to_csv(path,index= False)
@@ -53,7 +54,7 @@ def main():
     sensor = sensor.decode()
     value= sensor.split()
     #print(value)
-    if (len(value)==4):
+    if (len(value)==5):
         print("valores correctos")
         guardar(value,tabla)
     else:
