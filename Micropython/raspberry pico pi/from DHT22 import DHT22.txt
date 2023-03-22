@@ -1,0 +1,65 @@
+from DHT22 import DHT22
+from machine import Pin, ADC
+from time import sleep
+import led
+import _thread
+
+
+#sensorbajo = Pin(14,Pin.IN, Pin.PULL_DOWN)
+sensornivel = False
+sensorHyT = DHT22(Pin(6, Pin.IN))
+motor = Pin(18, Pin.OUT)
+sensorHumedad = ADC(0)
+max_suelo = 54525
+min_suelo = 22005
+status = 0
+value = 0
+
+        
+def regar():
+    global sensornivel, status, value
+    if sensornivel:
+        status =1
+        motor.off()
+    elif value < 50:
+        motor.on()
+        led.encendido(2)
+        led.apagado(4)
+        status = 0
+    else:
+        motor.off()
+        status = 0
+        led.apagado(2)
+        led.encendido(4)
+
+def medicion():
+    global status, value, sensorHyT, sensorHumedad
+    while True:
+        value = (max_suelo - sensorHumedad.read_u16())*100/(max_suelo-min_suelo)
+        sensorHyT.measure()
+        temp =  sensorHyT.temperature()
+        hum = sensorHyT.humidity()
+        print("cuarto: {} {} {} {}".format(value, hum, temp, status))
+         #uart.write("cuarto: {} {} {} {} \n".format(value,hum, temp, status))
+        sleep(2)
+  
+
+
+_thread.start_new_thread(regar, ())
+_thread.start_new_thread(medicion, ())
+
+
+
+
+from machine import Pin
+from time import sleep
+
+def encendido(pinled):
+    led = Pin(pinled,Pin.OUT)
+    led.on()
+    sleep(0.2)
+    
+def apagado(pinled):
+    led = Pin(pinled,Pin.OUT)
+    led.off()
+    sleep(0.2)
