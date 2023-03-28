@@ -4,9 +4,9 @@ import time
 from datetime import datetime
 import sys
 
-broker = "192.168.0.2"
+broker = "192.168.0.20"
 topic = sys.argv[1]
-path = '../csv/datos_new.csv'
+path = '../csv/mediciones.csv'
 
 def guardar(valorA, tabla):
     now = datetime.now()
@@ -33,7 +33,7 @@ def on_message(client, userdata, message):
     print("topic: {} y su mensaje es {}".format(message.topic, message.payload.decode()))
     value = message.payload.decode()
     value = value.split()
-    if (len(value) == 4):
+    if (len(value) == 5):
         print("valores correctos")
         guardar(value, tabla)
         client.disconnect()
@@ -52,6 +52,7 @@ def main():
             "humedad_suelo" : [],
             "humedad_amb" : [],
             "temperatura" :[],
+            "status_agua" : [],
         }
         tabla = pd.DataFrame.from_dict(dicc)
         tabla.to_csv(path,index= False)
