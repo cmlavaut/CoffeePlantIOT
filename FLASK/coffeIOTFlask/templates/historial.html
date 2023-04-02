@@ -1,0 +1,31 @@
+{% extends 'base.html'  %}
+{% block content %}
+  <h2>Historial</h2>
+  <h3>Escoge parametros para graficar:</h3>
+  <div> 
+    <span class="variable"> Variable:</span>
+    <select class="selector" id="variable">
+        <option value="humedad ambiente">Humedad del Ambiente</option>
+        <option value="temperatura">Temperatura del Ambiente</option>
+        <option value="humedad suelo">Humedad del Suelo</option>
+    </select>
+  </div>
+  <div> 
+    <span class="fecha"> Fecha:</span>
+    <select class="selector" id="fecha">
+      {% for i in range(0,lenFecha)  %}
+        <option value="{{ fechaArray[i]}}">{{ fechaArray[i] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+<div>  
+    <button class="button" onclick="graficar()">Generar Grafico</button>
+</div>
+<div>
+    <img src="{{ url_for('static', filename='graficos/figura.png') }}" class="graficos" id="grafica" alt="Figura">
+</div>
+<div>
+    <button class="texto" onclick="regresar()">volver</button>
+</div>
+<script src="../static/js/historial.js"></script>
+{% endblock %}
