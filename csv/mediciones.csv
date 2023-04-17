@@ -1646,3 +1646,5 @@ Fecha,Hora,Place,humedad_suelo,humedad_amb,temperatura,status_agua
 16 04 23,20:40:11,arduino_sala,53,52.50,23.70,1
 16 04 23,20:45:05,cuarto,56.02816,45.6,24.4,0
 16 04 23,20:45:08,arduino_sala,53,52.20,23.70,1
+16 04 23,20:50:07,cuarto,56.34106,44.2,24.3,0
+16 04 23,20:50:10,arduino_sala,53,51.60,23.80,1
