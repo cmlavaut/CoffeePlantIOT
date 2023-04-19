@@ -12,13 +12,16 @@ def guardar(valorA, tabla):
     now = datetime.now()
     now_fecha = now.strftime("%d %m %y")
     now_hora = now.strftime("%H:%M:%S")
-    try
-        tabla.insert(0, "Fecha", now_fecha)
-        tabla.insert(1, "Hora", now_hora)
+    try:
+       tabla.insert(0, "Fecha", now_fecha)
+       tabla.insert(1, "Hora", now_hora)
     except:
         #print("ya existe columnas de hora y fecha")
         pass            
     datos = [now_fecha, now_hora]
+    valorA.pop(3)
+    valorA.pop(2)
+    print(valorA)
     datos = datos + valorA
     tabla.loc[tabla.shape[0]] = datos
     tabla.to_csv(path, index = False)
@@ -33,7 +36,7 @@ def on_message(client, userdata, message):
     print("topic: {} y su mensaje es {}".format(message.topic, message.payload.decode()))
     value = message.payload.decode()
     value = value.split()
-    if (len(value) == 5):
+    if (len(value) == 7):
         print("valores correctos")
         guardar(value, tabla)
         client.disconnect()
