@@ -12,7 +12,7 @@ def guardar(valorA, tabla):
     now = datetime.now()
     now_fecha = now.strftime("%d %m %y")
     now_hora = now.strftime("%H:%M:%S")
-    try:
+    try
         tabla.insert(0, "Fecha", now_fecha)
         tabla.insert(1, "Hora", now_hora)
     except:
