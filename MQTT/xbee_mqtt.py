@@ -6,7 +6,7 @@ from datetime import datetime
 import paho.mqtt.client as mqtt
 
 path = '/home/kmi/CoffeePlantIOT/csv/mediciones.csv'
-broker = '192.168.0.20'
+broker = '192.168.50.155'
 
 def guardar(valorA,tabla):
         now = datetime.now()

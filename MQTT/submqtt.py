@@ -4,7 +4,7 @@ import time
 from datetime import datetime
 import sys
 
-broker = "192.168.0.20"
+broker = "192.168.50.155"
 topic = sys.argv[1]
 path = '../csv/mediciones.csv'
 
