@@ -4,9 +4,15 @@ import sys
 import pandas as pd
 from datetime import datetime
 import paho.mqtt.client as mqtt
+import json
 
 path = '/home/kmi/CoffeePlantIOT/csv/mediciones.csv'
 broker = '192.168.50.155'
+leercredenciales = open('credenciales.json',mode = 'r')
+credenciales = json.load(leercredenciales)
+user = credenciales['user']
+paswd = credenciales['passwd']
+leercredenciales.close()
 
 def guardar(valorA,tabla):
         now = datetime.now()
@@ -53,6 +59,7 @@ def main():
     
     arduino.flushInput()
     client = mqtt.Client()
+    client.username_pw_set(user,paswd)
     client.connect(broker, 1883)
     sensor = arduino.readline()
     client.publish(topic, sensor)
