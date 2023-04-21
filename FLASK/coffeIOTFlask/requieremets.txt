@@ -1,7 +1,0 @@
-flask
-pandas
-numpy
-matplotlib
-plotly
-kaleido
-paho-mqtt

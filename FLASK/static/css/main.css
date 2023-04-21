@@ -1,13 +1,69 @@
-h1 {
-    color: blueviolet;
-}
-
-.Boton{
-    color:chocolate;
+html{
     align-items: center;
-    display: inline-flex;
-    cursor: pointer;
-    text-decoration: none;
-    border: solid;
-    padding: 5px;
+    text-align: center;
+}
+h1{
+    color: brown ;
+    font-size: 60pt;
+}
+h2{
+    font-size: 40pt;
+}
+h3{
+    font-size: 30pt;
+}
+img{
+    width: 400px;
+    height: 400px;
+}
+div
+{
+    margin: 10px;
+    align-items: center;
+    text-align: center;
+}
+ul {
+    display: inline-block;
+  }
+.humedad{
+    width: 500px;
+    height: auto;
+    font-size: 30pt;
+}
+input[type="range"] {
+    transform: scaleY(3);
+  }
+.texto{
+    font-size: 30pt;
+    text-align: left;
+}
+.agua{
+    width: 200px;
+    height: 200px;
+}
+.cafe{
+    width: 300px;
+    height: 300px;
+}
+button{
+    margin: 20px;
+    font-size: 30pt;
+}
+.graficos{
+    width: 700px;
+    height: 700px;
+
+}
+.selector{
+    font-size: 30pt;
+    width: 500px;
+    text-align: center;
+}
+.fecha{
+    font-size: 30pt;
+    padding-right: 45px;
+}
+.variable{
+    font-size: 30pt;
+    padding-right: 10px;
 }

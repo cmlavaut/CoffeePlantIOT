@@ -1,23 +1,58 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title> Pagina Flask Fea</title>
-        <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-        <script src="{{url_for('static', filename='js/script.js')}}"></script>
-    </head>
-    <body onload="cargarpagina()">
-        <h1> Hola </h1>
-        <p>el valor de la variable es {{x}}</p>
-        <p>el valor es {{xx}}</p>
-        <p>{{y}} vive en {{z}}</p>
-        <a class = "Boton" href="http://gmail.com" target="_blank">ir a gmail</a>
-        <a class = "Boton" href ="{{url_for('suma')}}"  >suma</a>
-       
-
-
-    </body>
-    <footer>
-
-    </footer>
-</html>
+{% extends 'base.html'  %}
+{% block onload %}"peticionMqtt()"{% endblock %}
+{% block content %}
+    <h2>Datos de la Planta:</h2>
+    <img src="{{ url_for('static', filename='images/cafe.jpg') }}" class="cafe" alt="Figura">
+    <div>
+        <ul>
+            <li class="texto">Nombre: Planta de Cafe</li>
+            <li class="texto">Ubicacion: Posicion 1</li>
+            <li class="texto">Fecha de sembrado: 12/02/2023</li>
+        </ul>
+    </div>
+    <h2>Datos en tiempo Real:</h2>
+    {% if agua %}
+        <img src="{{ url_for('static', filename='images/agua.png') }}" id="aguaID" class="agua" alt="Figura">
+        <h3 class="textoAgua" ></h3>
+    {% else %}
+        <img src="{{ url_for('static', filename='images/no_agua.png') }}" id="aguaID" class="agua" alt="Figura">
+        <h3 class="textoAgua" ></h3>
+    {% endif %}
+    <p id="hum"></p>
+    <p id="temp"></p>
+    <p id="hum_suelo"></p>   
+    <h3>Valores Establecidos:</h3>
+    <div>   
+        <ul>
+            <li class="texto">Humedad Minima: <span class="humedadMinima"></span> %</li>
+            <li class="texto">Tiempo de regado: <span class="tiempoRegado"></span> Seg.</li>
+        </ul>
+    </div>
+    <h2>Controles:</h2>
+    <h3>Valores para establecer:</h3>
+        <input type="range" min="1" max="100" value="50" id="sensor" class="humedad">
+        <div>
+            <ul>
+                <li class="texto">Humedad minima: <span id="humedadMinima" class="humedad"></span> %</li>
+                <li class="texto">
+                    Tiempo de Regado:
+                    <select id="tiempo" class="texto">
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                    </select>
+                    Seg.
+                </li>
+            </ul>
+        </div>
+        <div>
+            <button class="texto" onclick="enviarDatos()">Enviar</button>
+            <button class="texto" onclick="historial()">Historial</button>
+        </div>
+        <div><button class="texto" onclick="regresar()">Regresar</div>
+    <script src="../static/js/scripts.js" numPlanta="{{ numPlanta }}"></script>
+{% endblock %}
