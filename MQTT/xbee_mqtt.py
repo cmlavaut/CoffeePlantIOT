@@ -5,6 +5,7 @@ import pandas as pd
 from datetime import datetime
 import paho.mqtt.client as mqtt
 import json
+from threading import Thread
 
 path = '/home/kmi/CoffeePlantIOT/csv/mediciones.csv'
 broker = '192.168.50.155'
@@ -69,12 +70,20 @@ def main():
     if (len(value)==5):
         print("valores correctos")
         guardar(value,tabla)
+        client.disconnet()
     else:
         print("valores incorrectos")
-        arduino.close()
         main()
+
     arduino.close()
+
+def detener():
+    time.sleep(30)
+    print("cerrando codigo")
+    os._exit(0)
 
 
 if __name__ == "__main__":
+    thread = Thread(target=detener)
+    therad.start()
     main()
