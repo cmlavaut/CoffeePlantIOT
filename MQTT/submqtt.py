@@ -3,8 +3,15 @@ import pandas as pd
 import time
 from datetime import datetime
 import sys
+import os
+from threading import Thread
+import json
 
 broker = "192.168.50.155"
+leerCredenciales = open("credenciales.json")
+credenciales = json.load(leerCredenciales)
+user = credenciales['user']
+passwd = credenciales['passwd']
 topic = sys.argv[1]
 path = '../csv/mediciones.csv'
 
@@ -63,8 +70,17 @@ def main():
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
+    client.username_pw_set(user,passwd)
     client.connect(broker)
     client.loop_forever()
 
+def detenerCodigo():
+    time.sleep(30)
+    print("Cerrando codigo")
+    os._exit(0)
+
+
 if __name__ == "__main__":
+    thread = Thread(target=detenerCodigo)
+    thread.start()
     main()
