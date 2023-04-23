@@ -1,6 +1,7 @@
 import serial
 import time
 import sys
+import os
 import pandas as pd
 from datetime import datetime
 import paho.mqtt.client as mqtt
@@ -70,7 +71,9 @@ def main():
     if (len(value)==5):
         print("valores correctos")
         guardar(value,tabla)
-        client.disconnet()
+        client.loop_stop()
+        client.disconnect()
+        os._exit(0)
     else:
         print("valores incorrectos")
         main()
@@ -78,7 +81,7 @@ def main():
     arduino.close()
 
 def detener():
-    time.sleep(30)
+    time.sleep(10)
     print("cerrando codigo")
     os._exit(0)
 

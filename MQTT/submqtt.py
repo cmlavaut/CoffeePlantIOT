@@ -46,7 +46,9 @@ def on_message(client, userdata, message):
     if (len(value) == 7):
         print("valores correctos")
         guardar(value, tabla)
+        client.loop_stop()
         client.disconnect()
+        os._exit(0)
     else:
         print("valores incorrectos")
         
@@ -75,7 +77,7 @@ def main():
     client.loop_forever()
 
 def detenerCodigo():
-    time.sleep(30)
+    time.sleep(10)
     print("Cerrando codigo")
     os._exit(0)
 
