@@ -12,8 +12,12 @@ leerCredenciales = open("credenciales.json")
 credenciales = json.load(leerCredenciales)
 user = credenciales['user']
 passwd = credenciales['passwd']
+leerCredenciales.close()
 topic = sys.argv[1]
 path = '../csv/mediciones.csv'
+now = datetime.now()
+fecha = now.strftime("%d %m %y")
+hora = now.strftime("%H:%M:%S")
 
 def guardar(valorA, tabla):
     now = datetime.now()
@@ -38,6 +42,13 @@ def on_connect(client, userdata, flags, rc):
     print("conectando al broker", rc)
     client.subscribe(topic)
 
+def on_disconnect(client, userdata,rc):
+    if rc != 0:
+        print("Unexpected disconnection.")
+    print("cerrando el broker",rc)
+    client.loop_stop()
+    os._exit(0)
+
 def on_message(client, userdata, message):
     global tabla
     print("topic: {} y su mensaje es {}".format(message.topic, message.payload.decode()))
@@ -46,9 +57,8 @@ def on_message(client, userdata, message):
     if (len(value) == 7):
         print("valores correctos")
         guardar(value, tabla)
-        client.loop_stop()
         client.disconnect()
-        os._exit(0)
+
     else:
         print("valores incorrectos")
         
@@ -71,13 +81,15 @@ def main():
     
     client = mqtt.Client()
     client.on_connect = on_connect
+    client.on_disconnect = on_disconnect
     client.on_message = on_message
     client.username_pw_set(user,passwd)
     client.connect(broker)
-    client.loop_forever()
+    client.loop_start()
+    print("Leyendo: {} {} {}".format(topic,fecha,hora))
 
 def detenerCodigo():
-    time.sleep(10)
+    time.sleep(15)
     print("Cerrando codigo")
     os._exit(0)
 
