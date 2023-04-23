@@ -85,5 +85,5 @@ def detener():
 
 if __name__ == "__main__":
     thread = Thread(target=detener)
-    therad.start()
+    thread.start()
     main()
