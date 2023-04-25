@@ -32,7 +32,7 @@ def guardar(valorA, tabla):
     datos = [now_fecha, now_hora]
     valorA.pop(3)
     valorA.pop(2)
-    print(valorA)
+    #print(valorA)
     datos = datos + valorA
     tabla.loc[tabla.shape[0]] = datos
     tabla.to_csv(path, index = False)
@@ -65,7 +65,7 @@ def on_message(client, userdata, message):
 
 
 def main():
-    global tabla
+    global tabla, value
     try:
         tabla = pd.read_csv(path)
     except:
@@ -87,6 +87,7 @@ def main():
     client.connect(broker)
     client.loop_start()
     print("Leyendo: {} {} {}".format(topic,fecha,hora))
+
 
 def detenerCodigo():
     time.sleep(15)
