@@ -1,3 +1,5 @@
+
+
 #microcontrolador ESP32
 import dht
 from machine import Pin, ADC
