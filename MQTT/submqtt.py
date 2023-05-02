@@ -30,9 +30,9 @@ def guardar(valorA, tabla):
         #print("ya existe columnas de hora y fecha")
         pass            
     datos = [now_fecha, now_hora]
+    #print(valorA)
     valorA.pop(3)
     valorA.pop(2)
-    #print(valorA)
     datos = datos + valorA
     tabla.loc[tabla.shape[0]] = datos
     tabla.to_csv(path, index = False)
