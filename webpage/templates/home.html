@@ -1,0 +1,21 @@
+{% extends 'base.html'  %}
+{% block content %}
+    <h2>Seleccione los datos que se desean mostrar</h2>
+
+    <label for="opciones">Selecciona una opción:</label>
+   
+    <div class="selector"  >
+        <select id="opciones">
+            <option value="arduino_sala">Sala</option>
+            <option value="cuarto">Cuarto</option>
+        </select>
+
+        <button class="texto" onclick='posicion()'>Graficar</button>
+        <button class=" texto" onclick="ver()">Ver</button>
+    </div>
+    <div>
+        <img src="../static/images/cafe.jpg"  class="imagen" alt="imagen">
+    </div>
+
+<script src= "{{url_for('static', filename='js/index.js')}}"></script>
+{% endblock %}

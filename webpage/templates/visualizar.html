@@ -1,0 +1,52 @@
+{% extends 'base.html'  %}
+{% block onload %}"peticionMqtt()"{% endblock %}
+{% block content %}
+
+<h2>Datos iniciales:</h2>
+<div>
+    <ul>
+        <li class="texto">Nombre: Planta de Cafe</li>
+        <li class="texto">Fecha de sembrado: 12/02/2023</li>
+    </ul>
+</div>
+
+
+<h2> Parámetros en Tiempo real:</h2>
+{% if aguaStatus %}
+<img src=" {{url_for('static', filename = 'images/lluvia.jpg')}}" class = "agua" alt="Imagen">
+{% else %}
+<img src=" {{url_for('static', filename = 'images/sol.jpg')}}" class = "agua" alt="Imagen">
+{% endif %}
+    <p id="hum"></p>
+    <p id="temp"></p>
+    <p id="hum_suelo"></p> 
+
+<h3>Valores Establecidos:</h3>
+    <div>   
+        <ul>
+            <li class="texto">Humedad Minima: <span class="humMinima"></span> %</li>
+            <li class="texto">Tiempo de regado: <span class="tiempoRegado"></span> Seg.</li>
+        </ul>
+    </div>
+
+<h3>Valores para actualizar:</h3>
+<div class="selector">
+    <label for="hum">Humedad minima permitida (1%-100%):</label>
+    <input type="number" id="hum" name="hum" min="1" max="100" class=" humedad">
+    <ul>
+        <label for="tiempo">Tiempo de Regado de la Planta (seg):</label>
+            <select class="segundo" id="tiempo">
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="25">25</option>
+                <option value="40">40</option>
+                <option value="60">60</option>
+            </select>
+    </ul>
+    <button class = 'texto' onclick="enviarDatos()">Enviar</button>
+    <button class = 'texto' onclick = "back()">Back</button>
+</div>
+<script src= "{{url_for('static', filename='js/index.js')}}"></script>
+{% endblock %}

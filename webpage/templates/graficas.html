@@ -1,0 +1,30 @@
+{% extends 'base.html'  %}
+{% block content %}
+
+<h2> Parámetros a graficar</h2>
+<h3>Seleccione:</h3>
+<div class="selector" >
+    <span class="variable"> Variable:</span>
+    <select id="parametro">
+        <option value="humedad ambiente">Humedad del Ambiente</option>
+        <option value="temperatura">Temperatura del Ambiente</option>
+        <option value="humedad suelo">Humedad del Suelo</option>
+    </select>
+  </div>
+  <div class="selector" >
+    <span class="fecha"> Fecha:</span>
+    <select id="fecha">
+      {% for i in range(0,lenFecha)  %}
+        <option value="{{ fechaArray[i]}}">{{ fechaArray[i] }}</option>
+      {% endfor %}
+    </select>
+    <button class="button" onclick='graficar()'>Plot</button>
+    <button class="texto" onclick="back()">Back</button>
+  </div>
+<div>
+    <img src="../static/graficos/SensortemperaturaFecha140323.png" class="graficos" id="grafica" alt="Figura">
+</div>
+
+    
+<script src= "{{url_for('static', filename='js/index.js')}}"></script>
+{% endblock %}

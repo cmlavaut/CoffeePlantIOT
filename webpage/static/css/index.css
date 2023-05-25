@@ -1,0 +1,81 @@
+h1 {
+    font-size: 50px;
+    color: brown;
+    text-align: center;
+    text-decoration: underline;
+}
+h2{
+    font-size: 35px;
+    color:chocolate;
+    text-align: center;
+    text-decoration: solid;
+}
+h3{
+    font-size: 30px;
+    color:chocolate;
+    text-align: center;
+    text-decoration: solid;
+}
+.selector {
+    font-size: 20px;
+    display: block;
+    text-align: center;
+    margin: auto;
+    text-decoration: solid;
+
+}
+select{
+    font-size: 20px;
+    display: block;
+    text-decoration: solid;
+    margin: auto;
+    margin-bottom:1em;
+    margin-top: 1em;
+}
+button{
+    font-size: 20px;
+    margin-bottom: 2em;
+    margin: 20px;
+    display: inline-block;
+}
+label {
+    font-size: 25px;
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 1em;
+}
+
+img {
+    display: flex;
+    margin: auto;
+    padding: auto;
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+
+}
+.variable{
+    font-size: 20px;
+    padding-right: 10px;
+
+}
+.fecha{
+    font-size: 20px;
+    padding-right: 10px;
+
+}
+ul{
+    font-size: 20px;
+    margin: auto;
+    text-align: center;
+    margin-block-start: 0;
+    padding-inline-start: 0;
+}
+.humedad{
+    width: 50px;
+    height: auto;
+    font-size: 20px;
+    text-align: left;
+}
+    
