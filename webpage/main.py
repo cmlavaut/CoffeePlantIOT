@@ -160,4 +160,4 @@ def home():
     return  render_template("home.html")
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5010)
+    app.run(host= '192.168.50.155', debug=True, port=5010)
