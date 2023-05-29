@@ -47,7 +47,11 @@ select{
 }
 button{
     font-size: 25px;
+<<<<<<< HEAD
     margin-bottom: 10px;
+=======
+    margin-bottom: 2em;
+>>>>>>> 895b653628804ffd55801d124ccad7575af6cc73
     margin: 20px;
     display: inline-block;
 }
