@@ -14,13 +14,15 @@
 <h2> Parámetros en Tiempo real:</h2>
 {% if aguaStatus %}
 <img src=" {{url_for('static', filename = 'images/lluvia.jpg')}}" class = "agua" alt="Imagen">
+<h3 class="textoAgua" > Hay agua disponible</h3>
 {% else %}
 <img src=" {{url_for('static', filename = 'images/sol.jpg')}}" class = "agua" alt="Imagen">
+<h3 class="textoAgua" > No hay agua disponible</h3>
 {% endif %}
 
 <ul>
     <li class="texto">Humedad ambiente actual: <span class ="hum"></span> %</li>
-    <li class="texto">Temperatura actual: <span class ="temp"></span> C</li>
+    <li class="texto">Temperatura actual: <span class ="temp"></span> ℃</li>
     <li class="texto">Humedad de suelo actual: <span class ="hum_suelo"></span> %</li>
     <li class ="texto">ID: <span class ="id" id="identificador"></span></li>
 </ul>

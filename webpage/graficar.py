@@ -35,9 +35,10 @@ def main():
     place = sys.argv[1]
     fecha = sys.argv[2]
     variable = sys.argv[3]
+    placenew = '0'+place
 
-    sala = datos[(datos["Place"]== place)&(datos["Fecha"]== fecha)].reset_index(drop=True)
-    #print(sala)
+    sala = datos[(datos["Place"]== placenew)&(datos["Fecha"]== fecha)].reset_index(drop=True)
+    print(sala)
 
     for index, row in sala.iterrows():
         sala.loc[index,"Hora"] = row["Hora"][:-6]

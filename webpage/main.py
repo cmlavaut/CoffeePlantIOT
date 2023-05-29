@@ -45,7 +45,7 @@ def on_connect(client,userdata,flags,rc):
 def on_message(client,userdata,message):
     global humSuelo, humMinina, humAmbiente, tiempoRegado, temperatura, aguaStatus, idplanta
     data = message.payload.decode().split()
-    print(idplanta) 
+    
     if len(data) == 7:
         if int(data[0]) == idplanta:
             humSuelo[idplanta] = np.round(float(data[1]),2)
@@ -55,7 +55,6 @@ def on_message(client,userdata,message):
             temperatura[idplanta] = np.round(float(data[5]),2)
             aguaStatus[idplanta] = int(data[6])
             print("datos cargados")
-    print(cambiarPlanta)
     if cambiarPlanta:
         client.disconnect()
         print("disconnected")
@@ -104,10 +103,9 @@ def graficarVelocimetro():
 
 @app.route('/visualizar/',methods=['GET'])
 def visualizar():
-    global humMinina, cambiarPlanta, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic, idplanta 
+    global humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic, idplanta, cambiarPlanta
     idplanta = int(request.cookies.get("numeracion"))
-    cambiarPlanta = 0
-    print(cambiarPlanta)
+    cambiarPlanta = 0 
     topic = 'sensores/{}'.format(idplanta)
     listoThread[idplanta] = Thread(target=conectarMQTT)
     listoThread[idplanta].start()
@@ -137,7 +135,7 @@ def enviarData(datos):
 def dataMqtt():
     global humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic
     dato = [idplanta, humSuelo[idplanta],humMinina[idplanta], tiempoRegado[idplanta], humAmbiente[idplanta], temperatura[idplanta], aguaStatus[idplanta]]
-    #print(cambiarPlanta)
+    #print(dato)
     response = make_response(json.dumps(dato))
     return response 
 
@@ -147,6 +145,7 @@ def datos():
     parametro = request.cookies.get("parametro")
     fecha = request.cookies.get("fecha")
     dato = '{} {} {}'.format(lugar, parametro, fecha)
+    print(dato)
     generar = 'python graficar.py "{}" "{}" "{}"'.format(lugar, fecha, parametro)
     print(generar)
     os.system(generar)
@@ -161,4 +160,4 @@ def home():
     return  render_template("home.html")
 
 if __name__ == "__main__":
-    app.run(host= "192.168.50.155", debug=True, port=5010)
+    app.run(debug=True, port=5010)
