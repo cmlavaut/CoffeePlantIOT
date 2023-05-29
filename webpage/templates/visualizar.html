@@ -17,10 +17,13 @@
 {% else %}
 <img src=" {{url_for('static', filename = 'images/sol.jpg')}}" class = "agua" alt="Imagen">
 {% endif %}
-    <p id="hum"></p>
-    <p id="temp"></p>
-    <p id="hum_suelo"></p> 
 
+<ul>
+    <li class="texto">Humedad ambiente actual: <span class ="hum"></span> %</li>
+    <li class="texto">Temperatura actual: <span class ="temp"></span> C</li>
+    <li class="texto">Humedad de suelo actual: <span class ="hum_suelo"></span> %</li>
+    <li class ="texto">ID: <span class ="id" id="identificador"></span></li>
+</ul>
 <h3>Valores Establecidos:</h3>
     <div>   
         <ul>

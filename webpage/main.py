@@ -23,13 +23,14 @@ credenciales = json.load(leerCredenciales)
 user = credenciales['user']
 passwd = credenciales['passwd']
 
-humSuelo= 0.0
-humMinina= 0.0
-humAmbiente= 0.0
-tiempoRegado = 0.0
-temperatura=0.0
-aguaStatus = 0
+humSuelo= [0.0, 0.0]
+humMinina= [0.0,0.0]
+humAmbiente= [0.0,0.0]
+tiempoRegado = [0,0]
+temperatura=[0.0, 0.0]
+aguaStatus = [0,0]
 idplanta = 0
+cambiarPlanta = 0
 listoThread = [Thread(),Thread(),Thread(),Thread()]
 
 app = Flask(__name__)
@@ -44,19 +45,24 @@ def on_connect(client,userdata,flags,rc):
 def on_message(client,userdata,message):
     global humSuelo, humMinina, humAmbiente, tiempoRegado, temperatura, aguaStatus, idplanta
     data = message.payload.decode().split()
+    
     if len(data) == 7:
-        print('datos correctos')
-        #if int(data[0]) == idplanta:
-        humSuelo = float(data[1])
-        humMinina = float(data[2])
-        tiempoRegado = int(data[3])
-        humAmbiente = float(data[4])
-        temperatura = float(data[5])
-        aguaStatus = int(data[6])
-        print("datos cargados")
+        if int(data[0]) == idplanta:
+            humSuelo[idplanta] = np.round(float(data[1]),2)
+            humMinina[idplanta] = float(data[2])
+            tiempoRegado[idplanta] = int(data[3]) 
+            humAmbiente[idplanta] = np.round(float(data[4]),2)
+            temperatura[idplanta] = np.round(float(data[5]),2)
+            aguaStatus[idplanta] = int(data[6])
+            print("datos cargados")
+    if cambiarPlanta:
+        client.disconnect()
+        print("disconnected")
+
     print(data)
     print('mensaje recibido el topic {}:{}'.format(message.topic,message.payload.decode()))
 
+   
 def conectarMQTT():
     client = mqtt.Client()
     client.on_connect = on_connect
@@ -95,11 +101,11 @@ def graficarVelocimetro():
     return response
 
 
-@app.route('/visualizar/<planta>')
-def visualizar(planta):
-    global humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic
-    topic = 'sensores/{}'.format(planta)
-    idplanta = int(planta)
+@app.route('/visualizar/',methods=['GET'])
+def visualizar():
+    global humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic, idplanta 
+    idplanta = int(request.cookies.get("numeracion"))
+    topic = 'sensores/{}'.format(idplanta)
     listoThread[idplanta] = Thread(target=conectarMQTT)
     listoThread[idplanta].start()
     context= {
@@ -108,22 +114,26 @@ def visualizar(planta):
         "humMinima": humMinina,
         "temperatura": temperatura,
         "aguaStatus": aguaStatus,
-        "tiempoRegado": tiempoRegado
+        "tiempoRegado": tiempoRegado,
+        "idplanta": idplanta
     }
-    return render_template("visualizar.html", **context)
+    return render_template('visualizar.html', **context) 
 
 
 @app.route('/enviarData/<datos>',methods=['GET'])
 def enviarData(datos):
-    publish.single("control",datos,hostname=broker)
+    print(datos)
+    tipoSensor = request.cookies.get("numeracion")
+    auth = {"username": user, "password": passwd}
+    publish.single("control/{}".format(tipoSensor),datos, auth= auth, hostname=broker)
     time.sleep(1.0)
     response = make_response(json.dumps(datos))
     return response 
 
-@app.route('/dataMqtt/',methods=['GET'])
+@app.route('/dataMqtt/', methods=['GET'])
 def dataMqtt():
     global humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic
-    dato = [tiempoRegado,humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, topic]
+    dato = [idplanta, humSuelo[idplanta],humMinina[idplanta], tiempoRegado[idplanta], humAmbiente[idplanta], temperatura[idplanta], aguaStatus[idplanta]]
     print(dato)
     response = make_response(json.dumps(dato))
     return response 
@@ -139,9 +149,12 @@ def datos():
     os.system(generar)
     return generar
 
+
+
 @app.route("/")
 def home():
-    #poner disconnet mqtt y matar los hilos
+    global cambiarPlanta
+    cambiarPlanta = 1
     return  render_template("home.html")
 
 if __name__ == "__main__":

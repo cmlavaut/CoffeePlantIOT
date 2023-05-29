@@ -1,4 +1,6 @@
 var intervalID = setInterval(peticionMqtt,2000);
+var script = document.querySelector('script[src="../static/js/index.js"]');
+
 
 function peticionMqtt()
 {
@@ -6,9 +8,14 @@ function peticionMqtt()
   var tm = dataMqtt.done(
     function(result){
         result = JSON.parse(result);
-        $('.humMinima').text(result[1]);
-        $('.tiempoRegado').text(result[0]);
-        console.log("dato cargados: "+ result[1]+ ","+result[0]);
+        $('.tiempoRegado').text(result[3]);
+        $('.humMinima').text(result[2]);
+        $('.hum').text(result[4]);
+        $('.hum_suelo').text(result[1]);
+        $('.temp').text(result[5]);
+        $('.id').text(result[0]);
+        $('.aguastatus').text(result[6]);
+        console.log("dato cargados: "+ result[0]+ ","+result[1]+ ","+result[2]+ ","+result[3]+ ","+result[4]+ ","+result[5] + ","+ result[6]);
     }
   )
 }
@@ -26,17 +33,6 @@ function graficar(){
     setTimeout(() => imagen.src=pathImagen, 4000);
 }
 
-function posicion(){
-    lugar = document.getElementById('opciones');
-    console.log(lugar);
-    document.cookie = "lugar=" + lugar.value;
-    setTimeout(() => window.location.href = "/graficas", 1000);
-}
-
-function ver(){
-    window.location.href = '/visualizar/3';
-}
-
 function back(){
     window.location.href = '/';
 }
@@ -44,9 +40,8 @@ function back(){
 function enviarDatos(){
     timeselect = document.getElementById("tiempo");
     humselect = document.getElementById("hum");
-    //document.cookie = "tiemposelect=" + timeselect.value;
-    var dato = timeselect.value + "," + humselect.value
+    var dato = humselect.value + "," + timeselect.value  
     console.log(dato)
-    $.get("/enviarData/"+ dato);
-    alert("Datos enviados " + dato);
+    $.get("/enviarData/" + dato);
+    alert("Datos enviados ");
 }

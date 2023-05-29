@@ -6,8 +6,8 @@
    
     <div class="selector"  >
         <select id="opciones">
-            <option value="arduino_sala">Sala</option>
-            <option value="cuarto">Cuarto</option>
+            <option value="0">Planta 0</option>
+            <option value="1">Planta 1</option>
         </select>
 
         <button class="texto" onclick='posicion()'>Graficar</button>
@@ -17,5 +17,5 @@
         <img src="../static/images/cafe.jpg"  class="imagen" alt="imagen">
     </div>
 
-<script src= "{{url_for('static', filename='js/index.js')}}"></script>
+<script src= "{{url_for('static', filename='js/home.js')}}"></script>
 {% endblock %}

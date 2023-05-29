@@ -148,5 +148,5 @@ def sensor(planta):
 
 
 if __name__ == '__main__':
-    app.run(host="192.168.50.155",port=5000,debug=True)
+    app.run(port=5000,debug=True)
 

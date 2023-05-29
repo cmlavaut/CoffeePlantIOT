@@ -79,3 +79,13 @@ ul{
     text-align: left;
 }
     
+.graficos{
+    height: 500px;
+    width: 500px;
+    margin: auto;
+    padding: auto;
+}
+
+input[type="range"] {
+    transform: scaleY(3);
+  }
