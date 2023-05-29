@@ -45,7 +45,7 @@ def on_connect(client,userdata,flags,rc):
 def on_message(client,userdata,message):
     global humSuelo, humMinina, humAmbiente, tiempoRegado, temperatura, aguaStatus, idplanta
     data = message.payload.decode().split()
-    
+    print(idplanta) 
     if len(data) == 7:
         if int(data[0]) == idplanta:
             humSuelo[idplanta] = np.round(float(data[1]),2)
@@ -55,6 +55,7 @@ def on_message(client,userdata,message):
             temperatura[idplanta] = np.round(float(data[5]),2)
             aguaStatus[idplanta] = int(data[6])
             print("datos cargados")
+    print(cambiarPlanta)
     if cambiarPlanta:
         client.disconnect()
         print("disconnected")
@@ -103,8 +104,10 @@ def graficarVelocimetro():
 
 @app.route('/visualizar/',methods=['GET'])
 def visualizar():
-    global humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic, idplanta 
+    global humMinina, cambiarPlanta, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic, idplanta 
     idplanta = int(request.cookies.get("numeracion"))
+    cambiarPlanta = 0
+    print(cambiarPlanta)
     topic = 'sensores/{}'.format(idplanta)
     listoThread[idplanta] = Thread(target=conectarMQTT)
     listoThread[idplanta].start()
@@ -134,7 +137,7 @@ def enviarData(datos):
 def dataMqtt():
     global humMinina, humAmbiente, humSuelo, temperatura, aguaStatus, tiempoRegado, topic
     dato = [idplanta, humSuelo[idplanta],humMinina[idplanta], tiempoRegado[idplanta], humAmbiente[idplanta], temperatura[idplanta], aguaStatus[idplanta]]
-    print(dato)
+    #print(cambiarPlanta)
     response = make_response(json.dumps(dato))
     return response 
 
