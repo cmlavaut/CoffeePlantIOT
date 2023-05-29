@@ -1,18 +1,21 @@
 h1 {
-    font-size: 50px;
+    font-size: 60px;
     color: brown;
     text-align: center;
     text-decoration: underline;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 h2{
-    font-size: 35px;
+    font-size: 45px;
     color:chocolate;
     text-align: center;
     text-decoration: solid;
     margin: auto;
+    margin-bottom: 10px;
 }
 h3{
-    font-size: 30px;
+    font-size: 45px;
     color:chocolate;
     text-align: center;
     text-decoration: solid;
@@ -23,6 +26,8 @@ h3{
     text-align: center;
     margin: auto;
     text-decoration: solid;
+    width: auto;
+    height: auto;
 
 }
 .segundo{
@@ -36,50 +41,49 @@ h3{
     height: auto;
 }
 select{
-    font-size: 20px;
+    font-size: 35px;
     display: block;
     text-decoration: solid;
     margin: auto;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    width: 105px;
-    height: auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    
 }
 button{
-    font-size: 25px;
-<<<<<<< HEAD
+    font-size: 45px;
     margin-bottom: 10px;
-=======
-    margin-bottom: 2em;
->>>>>>> 895b653628804ffd55801d124ccad7575af6cc73
     margin: 20px;
     display: inline-block;
 }
 label {
-    font-size: 25px;
+    font-size: 45px;
     display: block;
     text-align: center;
     margin: auto;
     margin-bottom: 10px;
 }
-
+div{
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
 img {
     display: flex;
     margin: auto;
     padding: auto;
-    width: 200px;
-    height: 200px;
-    margin-top: 50px;
+    width: 300px;
+    height: 300px;
+    margin-top: 80px;
 
 }
 .variable{
-    font-size: 25px;
+    font-size: 40px;
     padding-right: 10px;
     margin: auto;
 
 }
 .fecha{
-    font-size: 25px;
+    font-size: 40px;
     padding-right: 10px;
     margin: auto;
 
