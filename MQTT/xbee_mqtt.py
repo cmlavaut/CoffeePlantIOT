@@ -8,7 +8,7 @@ import paho.mqtt.client as mqtt
 import json
 from threading import Thread
 
-path = '/home/kmi/CoffeePlantIOT/csv/mediciones.csv'
+path = '/home/kmi/AppCoffee/csv/mediciones.csv'
 broker = '192.168.50.155'
 topic = sys.argv[2]
 leercredenciales = open('credenciales.json',mode = 'r')
