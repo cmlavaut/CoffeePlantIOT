@@ -15,7 +15,7 @@ from graficar import *
 
 path= "./csv/mediciones.csv"
 pathCredenciales = "./credenciales/credenciales.json"
-broker = '192.168.50.155'
+broker = '192.168.0.192'
 topic = 'sensores'
 
 leerCredenciales = open(pathCredenciales)
@@ -23,12 +23,12 @@ credenciales = json.load(leerCredenciales)
 user = credenciales['user']
 passwd = credenciales['passwd']
 
-humSuelo= [0.0, 0.0]
-humMinina= [0.0,0.0]
-humAmbiente= [0.0,0.0]
-tiempoRegado = [0,0]
-temperatura=[0.0, 0.0]
-aguaStatus = [0,0]
+humSuelo= [0.0, 0.0, 0.0, 0.0]
+humMinina= [0.0,0.0, 0.0, 0.0]
+humAmbiente= [0.0,0.0, 0.0, 0.0]
+tiempoRegado = [0,0,0,0]
+temperatura=[0.0, 0.0,0.0, 0.0]
+aguaStatus = [0,0,0,0]
 idplanta = 0
 cambiarPlanta = 0
 listoThread = [Thread(),Thread(),Thread(),Thread()]
@@ -160,4 +160,4 @@ def home():
     return  render_template("home.html")
 
 if __name__ == "__main__":
-    app.run(host= '192.168.50.155', debug=True, port=5010)
+    app.run(debug=True, port=5010)

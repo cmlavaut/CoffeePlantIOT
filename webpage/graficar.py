@@ -36,6 +36,7 @@ def main():
     fecha = sys.argv[2]
     variable = sys.argv[3]
     placenew = '0'+place
+    placenew = int(placenew)
 
     sala = datos[(datos["Place"]== placenew)&(datos["Fecha"]== fecha)].reset_index(drop=True)
     print(sala)
