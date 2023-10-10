@@ -1,3 +1,8 @@
+
+  
+
+
+
 import dht
 from machine import Pin, ADC, UART
 from time import sleep
@@ -15,10 +20,12 @@ max_suelo = 21957
 min_suelo = 11730
 status = 0
 value = 0
+hum_selecc = 40
+time_selecc = 20
 
         
 def regar():
-    global sensornivel, status, value
+    global sensornivel, status, value, hum_selecc, time_selecc
     while True:
         sleep(0.5)
         #print (value)
@@ -43,11 +50,7 @@ while True:
     sensorHyT.measure()
     temp =  sensorHyT.temperature()
     hum = sensorHyT.humidity()
-    print("cuarto: {} {} {} {}".format(value, hum, temp, status))
-    uart.write("cuarto {} {} {} {} \n".format(value,hum, temp, status))
+    print("02: {} {} {} {} {} {}".format(value, hum, temp, status, hum_selecc, time_selecc))
+    uart.write("02 {} {} {} {} {} {} \n".format(value,hum, temp, status, hum_selecc, time_selecc))
     sleep(2)
   
-
-
-
-
